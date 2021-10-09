@@ -2,14 +2,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SQLite List Barang</title>
+<title>SQLite List Buku</title>
 </head>
 
 <body>
 
-<h2>Daftar Barang</h2>
+<h2>Daftar Buku</h2>
 
 <a href="<?php echo site_url('buku/tambah')?>">Tambah</a><br/><br/>
+<form action="<?= site_url('buku/index') ?>" method="post">
+
+    <div>
+        <label for="judul">Judul: </label>
+        <input type="text" name="txt_judul" id="txt_judul"/>
+        <input type="submit" name="btnSearch" id="btnSearch" value="Search" />
+    </div>
+
+</form>
 <table border="1" cellpadding="1" cellspacing="2" >
  <thead>
  <tr>
@@ -24,9 +33,9 @@
  </thead>
  
  <tbody>
-  <?php 
-  
-  foreach($model->rows as $row){ 
+  <?php
+
+  foreach($model->rows as $row){
   	
 	  ?>
   	<tr>

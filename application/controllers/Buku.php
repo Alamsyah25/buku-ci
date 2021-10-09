@@ -9,11 +9,29 @@ class Buku extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->model->get_rows();
-		$data = array('model' => $this->model);
-		$this->load->view('buku_list_view', $data);
+
+		if(isset($_POST['btnSearch'])){
+			$this->model->judul = $_POST['txt_judul'];
+			$this->model->get_search();
+			$this->load->view('buku_list_view', ['model' => $this->model]);
+		}else{
+			$this->model->get_rows();
+			$data = array('model' => $this->model);
+			$this->load->view('buku_list_view', $data);
+		}
+
 	}
-	
+	public function search(){
+		#echo "Search"; exit;
+
+		if(isset($_POST['btnSearch'])){
+			$this->model->judul = $_POST['txt_judul'];
+			$this->model->get_search();
+			$this->load->view('buku_list_view', ['model' => $this->model]);
+		}else{
+			$this->load->view('buku_form_add_view', ['model' => $this->model]);
+		}
+	}
 	public function tambah(){
 		#echo "Tambah"; exit;
 

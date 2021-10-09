@@ -39,6 +39,19 @@ class Buku_model extends CI_Model {
 		
 		$this->rows = $rows;
 	}
+
+    public function get_search(){
+//        $sql = "SELECT * FROM buku_tbl ORDER BY idbuku";
+        $sql = "Select * from buku_tbl where judul like '%$this->judul%'";
+
+        $query = $this->db->query($sql);
+        $rows = array();
+        foreach($query->result() as $row){
+            $rows[] = $row;
+        }
+
+        $this->rows = $rows;
+    }
 	
 	public function insert(){
 		$sql = sprintf("INSERT INTO buku_tbl(judul , isbn, penulis, penerbit , tahun_terbit) VALUES('%s', '%s', '%s','%s','%s')",
